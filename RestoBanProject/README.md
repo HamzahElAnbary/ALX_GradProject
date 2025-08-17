@@ -18,9 +18,7 @@ Created my first Django app called RestoBan.
 
 Registered the new app in RestoBanProject/settings.py by adding it to INSTALLED_APPS:
 
-python
-Copy
-Edit
+
 INSTALLED_APPS = [
     ...,
     'RestoBan',
@@ -33,7 +31,9 @@ Edit
 git add .
 git commit -m "Set up Django project and app"
 git push origin main
+
 Next Steps
+
 Next week, I’ll focus on structuring the app by working on:
 
 Models (to define the database structure)
