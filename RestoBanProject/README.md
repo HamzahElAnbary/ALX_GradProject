@@ -41,3 +41,15 @@ Models (to define the database structure)
 Views (to handle application logic)
 
 Templates (to build the user interface)
+
+Second Push
+
+During this stage of the project, I structured the RestoBan application by implementing the core components of the MVC pattern. I created Models to define the database structure, developed Views to handle application logic, and built Templates for the user interface. I also applied full CRUD operations for recipes, enabling users to create, read, update, and delete entries. Additionally, I set up the URL routing for proper navigation and added basic testing for the recipe functionality to ensure the application behaves as expected. Overall, these steps laid the foundation for a well-organized and functional web application.
+Next week, I will be focusing on the below: 
+
+Technical Requirements:
+Database:
+Authentication:
+API Design:
+Deployment:
+Pagination and Sorting:
