@@ -1,0 +1,9 @@
+{% extends 'RestoBan/base.html' %}
+{% block title %}Delete {{ object.title }} · RestoBan{% endblock %}
+{% block content %}
+  <h1>Delete "{{ object.title }}"?</h1>
+  <form method="post">{% csrf_token %}
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'restoban:recipe_detail' slug=object.slug %}">Cancel</a>
+  </form>
+{% endblock %}

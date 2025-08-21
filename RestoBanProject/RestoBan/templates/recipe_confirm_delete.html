@@ -1,0 +1,10 @@
+<h1>Delete Recipe</h1>
+
+<p>Are you sure you want to delete "{{ object.title }}"?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">🗑 Confirm Delete</button>
+</form>
+
+<a href="{% url 'restoban:recipe_detail' object.slug %}">⬅ Cancel</a>

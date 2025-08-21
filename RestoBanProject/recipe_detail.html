@@ -1,0 +1,21 @@
+{% extends 'RestoBan/base.html' %}
+{% block title %}{{ recipe.title }} · RestoBan{% endblock %}
+{% block content %}
+  <h1>{{ recipe.title }}</h1>
+  <p><em>{{ recipe.get_category_display }}</em> · Serves {{ recipe.servings }} · Total {{ recipe.total_time_minutes }} mins</p>
+  {% if recipe.description %}<p>{{ recipe.description }}</p>{% endif %}
+  <h3>Ingredients</h3>
+  <ul>
+    {% for line in recipe.ingredients.splitlines %}
+      {% if line %}<li>{{ line }}</li>{% endif %}
+    {% endfor %}
+  </ul>
+  <h3>Instructions</h3>
+  <pre style="white-space:pre-wrap">{{ recipe.instructions }}</pre>
+  <p><small>Created {{ recipe.created_at|date:'Y-m-d H:i' }}</small></p>
+  <p>
+    <a href="{% url 'restoban:recipe_update' slug=recipe.slug %}">Edit</a>
+    ·
+    <a href="{% url 'restoban:recipe_delete' slug=recipe.slug %}">Delete</a>
+  </p>
+{% endblock %}

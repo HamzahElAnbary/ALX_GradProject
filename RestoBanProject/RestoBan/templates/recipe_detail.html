@@ -1,0 +1,15 @@
+<h1>{{ object.title }}</h1>
+
+<p><strong>Description:</strong> {{ object.description }}</p>
+<p><strong>Ingredients:</strong> {{ object.ingredients }}</p>
+<p><strong>Instructions:</strong> {{ object.instructions }}</p>
+<p><strong>Category:</strong> {{ object.category }}</p>
+<p><strong>Prep time:</strong> {{ object.prep_time_minutes }} minutes</p>
+<p><strong>Cook time:</strong> {{ object.cook_time_minutes }} minutes</p>
+<p><strong>Servings:</strong> {{ object.servings }}</p>
+
+<p>
+  <a href="{% url 'restoban:recipe_update' object.slug %}">✏️ Edit</a> |
+  <a href="{% url 'restoban:recipe_delete' object.slug %}">🗑 Delete</a> |
+  <a href="{% url 'restoban:recipe_list' %}">⬅ Back to list</a>
+</p>

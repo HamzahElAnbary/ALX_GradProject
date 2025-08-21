@@ -1,0 +1,26 @@
+{% extends 'RestoBan/base.html' %}
+{% block title %}Recipes · RestoBan{% endblock %}
+{% block content %}
+  <h1>Recipes</h1>
+  <form method="get" action="" style="margin-bottom:1rem">
+    <input type="search" name="q" value="{{ request.GET.q }}" placeholder="Search title or ingredients" />
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+    {% for r in recipes %}
+      <li>
+        <a href="{% url 'restoban:recipe_detail' slug=r.slug %}"><strong>{{ r.title }}</strong></a>
+        — {{ r.get_category_display }} · {{ r.servings }} servings · {{ r.total_time_minutes }} mins total
+      </li>
+    {% empty %}
+      <li>No recipes yet.</li>
+    {% endfor %}
+  </ul>
+  {% if is_paginated %}
+    <nav>
+      {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">Previous</a>{% endif %}
+      <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+      {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">Next</a>{% endif %}
+    </nav>
+  {% endif %}
+{% endblock %}

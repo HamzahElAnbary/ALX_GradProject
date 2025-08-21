@@ -1,0 +1,4 @@
+<h1>Recipe List</h1>
+{% for recipe in object_list %}
+  <a href="{% url 'restoban:recipe_detail' recipe.slug %}">{{ recipe.title }}</a><br>
+{% endfor %}

@@ -1,0 +1,17 @@
+<h1>Recipe List</h1>
+
+<ul>
+  {% for recipe in object_list %}
+    <li>
+      <a href="{% url 'restoban:recipe_detail' recipe.slug %}">
+        {{ recipe.title }}
+      </a>
+      | <a href="{% url 'restoban:recipe_update' recipe.slug %}">Edit</a>
+      | <a href="{% url 'restoban:recipe_delete' recipe.slug %}">Delete</a>
+    </li>
+  {% empty %}
+    <li>No recipes available yet.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'restoban:recipe_create' %}">➕ Create a new recipe</a>

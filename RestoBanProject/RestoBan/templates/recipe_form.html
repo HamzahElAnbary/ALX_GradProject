@@ -1,0 +1,9 @@
+<h1>{% if object %}Edit Recipe{% else %}Create Recipe{% endif %}</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">💾 Save</button>
+</form>
+
+<a href="{% url 'restoban:recipe_list' %}">⬅ Back to list</a>

@@ -5,29 +5,33 @@ from .forms import RecipeForm
 
 class RecipeListView(ListView):
     model = Recipe
-    template_name = "RestoBan/recipe_list.html"
+    template_name = "recipes/recipe_list.html"
     context_object_name = "recipes"
-    paginate_by = 10
 
 class RecipeDetailView(DetailView):
     model = Recipe
-    template_name = "RestoBan/recipe_detail.html"
+    template_name = "recipes/recipe_detail.html"
     context_object_name = "recipe"
-    slug_field = "slug"
 
 class RecipeCreateView(CreateView):
     model = Recipe
     form_class = RecipeForm
-    template_name = "RestoBan/recipe_form.html"
+    template_name = "recipes/recipe_form.html"
+    success_url = reverse_lazy("restoban:recipe_list")
+
+    def form_invalid(self, form):
+        """Override to attach form to response for assertFormError."""
+        response = super().form_invalid(form)
+        response.context_data["form"] = form
+        return response
 
 class RecipeUpdateView(UpdateView):
     model = Recipe
     form_class = RecipeForm
-    template_name = "RestoBan/recipe_form.html"
-    slug_field = "slug"
+    template_name = "recipes/recipe_form.html"
+    success_url = reverse_lazy("restoban:recipe_list")
 
 class RecipeDeleteView(DeleteView):
     model = Recipe
-    template_name = "RestoBan/recipe_confirm_delete.html"
+    template_name = "recipes/recipe_confirm_delete.html"
     success_url = reverse_lazy("restoban:recipe_list")
-    slug_field = "slug"
