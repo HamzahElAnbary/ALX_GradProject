@@ -1,5 +1,5 @@
 from django import forms
-from .models import Recipe
+from .models import Recipe, Order, OrderItem
 
 class RecipeForm(forms.ModelForm):
     class Meta:
@@ -39,3 +39,13 @@ class RecipeForm(forms.ModelForm):
         if not instr:
             raise forms.ValidationError("Instructions are required.")
         return instr
+
+class RecipeForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = "__all__"
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ["status"]  # customers cannot edit status
