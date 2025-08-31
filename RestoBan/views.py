@@ -49,7 +49,7 @@ class RecipeDeleteView(DeleteView):
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    return render(request, "dashboard.html")
 
 
 def signup(request):
