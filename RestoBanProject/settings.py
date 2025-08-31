@@ -57,6 +57,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "RestoBanProject.wsgi.application"
 
+LOGIN_URL = '/signup/'  # change to your login URL if different
+
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
 # Database (using SQLite for now)
 DATABASES = {
     "default": {
