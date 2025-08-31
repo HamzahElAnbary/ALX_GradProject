@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome to RestoBan Dashboard</h1>
+<p>This is your homepage. Use the links below to navigate:</p>
+
+<ul>
+  <li><a href="{% url 'restoban:recipe_list' %}">Recipes</a></li>
+  <li><a href="{% url 'restoban:order_list' %}">Orders</a></li>
+  <li><a href="{% url 'restoban:signup' %}">Sign Up</a></li>
+</ul>
+{% endblock %}
