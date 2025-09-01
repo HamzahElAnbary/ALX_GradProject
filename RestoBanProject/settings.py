@@ -58,6 +58,8 @@ TEMPLATES = [
 WSGI_APPLICATION = "RestoBanProject.wsgi.application"
 
 LOGIN_URL = '/signup/'  # change to your login URL if different)
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # Database (using SQLite for now)
 DATABASES = {
