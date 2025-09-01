@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .models import Recipe
 from .forms import RecipeForm
@@ -13,26 +14,23 @@ from .models import Order, OrderItem
 from .forms import OrderForm
 from rest_framework import generics, filters
 from .serializers import RecipeSerializer, OrderSerializer
-from django.db.models import Q
 
 class RecipeListView(ListView):
     model = Recipe
     template_name = 'RestoBan/recipe_list.html'
     context_object_name = 'recipes'
-    paginate_by = 10  # show 10 recipes per page
+    paginate_by = 10  # adjust as needed
 
     def get_queryset(self):
-        """
-        Optionally filters recipes by a search query (`q`) in title or ingredients.
-        """
+        """Filter recipes by search query if provided; otherwise, return all."""
         queryset = super().get_queryset()
-        query = self.request.GET.get('q')
+        query = self.request.GET.get('q', '').strip()  # get 'q' or empty string
         if query:
             queryset = queryset.filter(
                 Q(title__icontains=query) |
                 Q(ingredients__icontains=query)
             )
-        return queryset.order_by('title')  # optional: order alphabetically
+        return queryset.order_by('title')  # optional: alphabetical order
 
 class RecipeDetailView(DetailView):
     model = Recipe
