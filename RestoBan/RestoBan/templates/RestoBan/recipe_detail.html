@@ -1,3 +1,25 @@
-<h1>{{ object.title }}</h1>
-<p>{{ object.ingredients }}</p>
-<p>{{ object.instructions }}</p>
+{% extends 'RestoBan/base.html' %}
+
+{% block title %}{{ recipe.title }} · RestoBan{% endblock %}
+
+{% block content %}
+<h1>{{ recipe.title }}</h1>
+
+<p><strong>Category:</strong> {{ recipe.get_category_display }}</p>
+<p><strong>Servings:</strong> {{ recipe.servings }}</p>
+<p><strong>Total time:</strong> {{ recipe.total_time_minutes }} minutes</p>
+
+<h2>Ingredients</h2>
+<ul>
+  {% for ingredient in recipe.ingredients_list %}
+    <li>{{ ingredient }}</li>
+  {% empty %}
+    <li>No ingredients listed.</li>
+  {% endfor %}
+</ul>
+
+<h2>Instructions</h2>
+<p>{{ recipe.instructions }}</p>
+
+<a href="{% url 'restoban:recipe_list' %}">← Back to recipes</a>
+{% endblock %}

@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from rest_framework.routers import DefaultRouter
 from .api_views import RecipeViewSet, OrderViewSet
+from .views import RecipeListView, RecipeDetailView
 
 app_name = "restoban"
 

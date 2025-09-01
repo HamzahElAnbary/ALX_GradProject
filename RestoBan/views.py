@@ -13,15 +13,30 @@ from .models import Order, OrderItem
 from .forms import OrderForm
 from rest_framework import generics, filters
 from .serializers import RecipeSerializer, OrderSerializer
+from django.db.models import Q
 
 class RecipeListView(ListView):
     model = Recipe
-    template_name = "recipes/recipe_list.html"
-    context_object_name = "recipes"
+    template_name = 'RestoBan/recipe_list.html'
+    context_object_name = 'recipes'
+    paginate_by = 10  # show 10 recipes per page
+
+    def get_queryset(self):
+        """
+        Optionally filters recipes by a search query (`q`) in title or ingredients.
+        """
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(
+                Q(title__icontains=query) |
+                Q(ingredients__icontains=query)
+            )
+        return queryset.order_by('title')  # optional: order alphabetically
 
 class RecipeDetailView(DetailView):
     model = Recipe
-    template_name = "recipes/recipe_detail.html"
+    template_name = 'RestoBan/recipe_detail.html'
     context_object_name = "recipe"
 
 class RecipeCreateView(CreateView):

@@ -43,9 +43,19 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
 
-    @property
-    def total_time_minutes(self):
-        return (self.prep_time_minutes or 0) + (self.cook_time_minutes or 0)
+@property
+def total_time_minutes(self):
+    return (self.prep_time_minutes or 0) + (self.cook_time_minutes or 0)
+
+@property
+def ingredients_list(self):
+    """
+    Returns a list of ingredients by splitting the ingredients field by line.
+    Strips any extra whitespace.
+    """
+    if self.ingredients:
+        return [line.strip() for line in self.ingredients.splitlines() if line.strip()]
+    return []
 
 
 class Order(models.Model):
