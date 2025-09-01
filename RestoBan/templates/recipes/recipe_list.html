@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 {% block title %}Recipe List · RestoBan{% endblock %}
-
 {% block content %}
-<h1>Recipe List</h1>
-<ul>
-  {% for recipe in recipes %}
-    <li>
-      <a href="{% url 'restoban:recipe_detail' slug=recipe.slug %}">
-        {{ recipe.name }}
-      </a>
-    </li>
-  {% empty %}
-    <li>No recipes found.</li>
-  {% endfor %}
-</ul>
+<div class="container mt-4">
+  <h1 class="mb-3">Recipe List</h1>
+
+  <ul class="list-group">
+    {% for r in recipes %}
+      <li class="list-group-item">
+        <strong>{{ r.title }}</strong>
+        <br>
+        ID: {{ r.id }}
+        <br>
+        Category (raw): {{ r.category }}
+      </li>
+    {% empty %}
+      <li class="list-group-item">No recipes found.</li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}

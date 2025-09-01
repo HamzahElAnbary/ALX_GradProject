@@ -17,7 +17,7 @@ from .serializers import RecipeSerializer, OrderSerializer
 
 class RecipeListView(ListView):
     model = Recipe
-    template_name = 'RestoBan/recipe_list.html'
+    template_name = 'recipes/recipe_list.html'
     context_object_name = 'recipes'
     paginate_by = 10  # adjust as needed
 

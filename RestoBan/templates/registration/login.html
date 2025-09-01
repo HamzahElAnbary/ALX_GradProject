@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Login · RestoBan{% endblock %}
-
 {% block content %}
 <div class="row justify-content-center">
   <div class="col-md-5">
     <div class="card shadow-sm">
       <div class="card-body">
         <h1 class="h4 mb-3">Sign in</h1>
+
         {% if form.errors %}
           <div class="alert alert-danger">Invalid username or password.</div>
         {% endif %}
-        <form method="post" action="{% url 'restoban:login' %}">
+
+        <form method="post" action="{% url 'login' %}">
           {% csrf_token %}
           <div class="mb-3">
             <label class="form-label">Username</label>
@@ -23,9 +24,11 @@
           <button class="btn btn-primary w-100" type="submit">Login</button>
           <input type="hidden" name="next" value="{{ next }}">
         </form>
+
         <div class="mt-3">
-          <a href="{% url 'restoban:password_reset' %}">Forgot password?</a>
+          <a href="{% url 'password_reset' %}">Forgot password?</a>
         </div>
+
         <p class="mt-3">
           Don't have an account? <a href="{% url 'restoban:signup' %}">Sign up here</a>.
         </p>
